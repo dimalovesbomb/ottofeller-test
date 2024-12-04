@@ -50,12 +50,10 @@ body {
 }
 
 .block-fade-in {
-  background-color: #3498db;
   opacity: 0;
-  transition: opacity 1s;
+  transition: opacity 1.5s;
 }
 
 .block-fade-in.block-visible {
-  background-color: #3498db;
   opacity: .9;
 }
