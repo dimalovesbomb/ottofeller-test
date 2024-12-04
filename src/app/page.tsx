@@ -1,101 +1,100 @@
-import Image from "next/image";
+'use client';
+import { useEffect, useState } from 'react';
+import { Footer } from "@/components/Footer";
+import { PokemonCard } from "@/components/PokemonCard";
+
+interface Pokemon {
+    name: string;
+    sprites: { front_default: string };
+}
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+    const [loading, setLoading] = useState(true);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    useEffect(() => {
+        const fetchPokemons = async () => {
+            const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=5');
+            const data = await res.json();
+            const detailedData = await Promise.all(
+                data.results.map((pokemon: { url: string }) =>
+                    fetch(pokemon.url).then((res) => res.json())
+                )
+            );
+            setPokemons(detailedData);
+            setLoading(false);
+        };
+        fetchPokemons();
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el) => {
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    el.classList.add('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    return (
+        <div>
+            {loading && (
+                <div
+                    role="status"
+                    aria-live="polite"
+                    className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-100 z-50"
+                >
+                    <div className="loader" aria-label="Loading..."></div>
+                </div>
+            )}
+
+            <header className="text-center py-10">
+                <h1 className="text-4xl font-bold" tabIndex={0}>
+                    PokeLand
+                </h1>
+                <p className="mt-4 text-gray-600" tabIndex={0}>
+                    Catch 'em all!
+                </p>
+            </header>
+
+            <main className="container mx-auto px-4">
+                <section>
+                    <div
+                        className="relative bg-[url('/parallax-cat.png')] bg-center bg-contain bg-no-repeat bg-fixed h-48 md:h-64 w-full"
+                    >
+                        <h2 className="absolute bottom-10 left-10 text-white text-xl md:text-3xl font-bold">
+                            such wow much cool!
+                        </h2>
+                    </div>
+                </section>
+                <section aria-labelledby="pokemon-section-title" className="my-60">
+                    <h2
+                        id="pokemon-section-title"
+                        className="text-2xl font-semibold mb-6 text-center fade-in"
+                        tabIndex={0}
+                    >
+                        Pokemons
+                    </h2>
+                    <div className="fade-in my-10">
+                        <p className="text-center text-lg">This text is animated as you scroll!</p>
+                    </div>
+                    <div
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                        role="list"
+                        aria-live="polite"
+                    >
+                        {pokemons.map((pokemon) => (
+                            <PokemonCard key={pokemon.name} name={pokemon.name} imgSrc={pokemon.sprites.front_default} />
+                        ))}
+                    </div>
+                </section>
+            </main>
+            <Footer/>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
 }
