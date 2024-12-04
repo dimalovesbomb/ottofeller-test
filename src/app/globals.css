@@ -48,3 +48,14 @@ body {
   transform: translateX(0);
   opacity: 1;
 }
+
+.block-fade-in {
+  background-color: #3498db;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.block-fade-in.block-visible {
+  background-color: #3498db;
+  opacity: .9;
+}
