@@ -58,7 +58,7 @@ export default function Home() {
                     PokeLand
                 </h1>
                 <p className="mt-4 text-gray-600" tabIndex={0}>
-                    Catch 'em all!
+                    Catch &#39;em all!
                 </p>
             </header>
 
