@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface PokemonCardProps {
     name: string;
     imgSrc: string;
@@ -6,12 +8,11 @@ interface PokemonCardProps {
 export const PokemonCard: React.FC<PokemonCardProps> = ({ name, imgSrc }) => {
     return (
         <div
-            key={name}
             role="listitem"
             className="relative bg-white shadow rounded-lg p-6 hover:transform hover:scale-105 transition-transform"
             tabIndex={0}
         >
-            <img src={imgSrc} alt={`Image of ${name}`} className="mx-auto" />
+            <Image src={imgSrc} alt={`Image of ${name}`} className="mx-auto" width={96} height={96} />
             <h3 className="mt-4 text-lg text-center font-semibold text-slate-950" tabIndex={0}>
                 {name}
             </h3>

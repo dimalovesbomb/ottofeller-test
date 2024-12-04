@@ -17,17 +17,17 @@ export default function Home() {
                 <section aria-labelledby="pokemon-section-parallax">
                     <FixedParallaxContainer label="such wow much cool!" id="pokemon-section-parallax" />
                 </section>
-                <section aria-labelledby="pokemon-section-title" className="my-24">
-                    <FadeInContainer>
-                        <FadeInSectionHeader
-                            header="Pokemons"
-                            subheader="This text is animated as you scroll into view!"
-                            id="pokemon-section-title"
-                        />
-                        <Suspense fallback={<Loader />}>
+                <section aria-labelledby="pokemon-section-title" className="my-24 md:my-64">
+                    <FadeInSectionHeader
+                        header="Pokemons"
+                        subheader="This text is animated as you scroll into view!"
+                        id="pokemon-section-title"
+                    />
+                    <Suspense fallback={<Loader />}>
+                        <FadeInContainer>
                             <PokemonList />
-                        </Suspense>
-                    </FadeInContainer>
+                        </FadeInContainer>
+                    </Suspense>
                 </section>
             </main>
             <Footer />

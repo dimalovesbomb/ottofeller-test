@@ -38,13 +38,13 @@ body {
   }
 }
 
-.fade-in {
+.text-fade-in {
   opacity: 0;
   transform: translateX(-50px);
   transition: opacity 1s, transform 1s ease-out;
 }
 
-.fade-in.visible {
+.text-fade-in.text-visible {
   transform: translateX(0);
   opacity: 1;
 }
@@ -55,5 +55,5 @@ body {
 }
 
 .block-fade-in.block-visible {
-  opacity: .9;
+  opacity: 1;
 }
