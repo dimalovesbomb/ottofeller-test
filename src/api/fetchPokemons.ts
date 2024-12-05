@@ -4,7 +4,7 @@ const POKEMONS_API_URL = process.env.POKEMON_HOST + '/api/v2/pokemon?limit=6';
 
 export const fetchPokemons = async (): Promise<PokemonDetails[] | null> => {
     try {
-        const res = await fetch(POKEMONS_API_URL);
+        const res = await fetch(POKEMONS_API_URL, { cache: 'no-cache' });
 
         // simulating slow response to see the loader
         const data: PokemonsResponse = await new Promise((resolve) => {
