@@ -1,14 +1,14 @@
-import { fetchPokemons } from '@/api/fetchPokemons';
-import { PokemonCard } from '@/app/components/PokemonCard';
+import { PokemonCard } from '@/app/components';
+import type { PokemonDetails } from '@/api/types';
 
-export const PokemonList = async () => {
-    const pokemons = await fetchPokemons();
+interface PokemonListProps {
+    pokemons: PokemonDetails[];
+}
 
-    return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6" role="list" aria-live="polite">
-            {pokemons.map((pokemon) => (
-                <PokemonCard key={pokemon.name} name={pokemon.name} imgSrc={pokemon.sprites.front_default} />
-            ))}
-        </div>
-    );
-};
+export const PokemonList: React.FC<PokemonListProps> = ({ pokemons }) => (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6" role="list" aria-live="polite">
+        {pokemons.map((pokemon) => (
+            <PokemonCard key={pokemon.name} name={pokemon.name} imgSrc={pokemon.sprites.front_default} />
+        ))}
+    </div>
+);

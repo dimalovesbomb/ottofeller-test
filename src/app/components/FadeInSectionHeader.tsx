@@ -12,7 +12,7 @@ export const FadeInSectionHeader: React.FC<FadeInSectionHeaderProps> = ({ header
 
     return (
         <>
-            <h2 id={id} className="text-2xl font-semibold mb-6 text-center text-fade-in" tabIndex={0}>
+            <h2 id={id} className="text-2xl font-semibold mb-6 text-center text-fade-in">
                 {header}
             </h2>
             {subheader && (

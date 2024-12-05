@@ -1,7 +1,12 @@
 export { Footer } from './Footer';
-export { FadeInSectionHeader } from './FadeInSectionHeader';
 export { Loader } from './Loader';
-export { PokemonList } from './PokemonList';
-export { FadeInContainer } from './FadeInContainer';
 export { PageHeader } from './PageHeader';
+
 export { FixedParallaxContainer } from './FixedParallaxContainer';
+export { FadeInContainer } from './FadeInContainer';
+export { FadeInSectionHeader } from './FadeInSectionHeader';
+
+export { PokemonsContainer } from './PokemonsContainer';
+export { PokemonList } from './PokemonList';
+export { PokemonCard } from './PokemonCard';
+export { NoPokemons } from './NoPokemons';

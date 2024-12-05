@@ -6,7 +6,7 @@ import {
     Footer,
     Loader,
     PageHeader,
-    PokemonList,
+    PokemonsContainer,
 } from '@/app/components';
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
                     />
                     <Suspense fallback={<Loader />}>
                         <FadeInContainer>
-                            <PokemonList />
+                            <PokemonsContainer />
                         </FadeInContainer>
                     </Suspense>
                 </section>
