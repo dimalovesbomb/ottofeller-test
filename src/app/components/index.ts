@@ -1,8 +1,10 @@
+export { PageHeader } from './PageHeader';
 export { Footer } from './Footer';
 export { Loader } from './Loader';
-export { PageHeader } from './PageHeader';
 
-export { FixedParallaxContainer } from './FixedParallaxContainer';
+export { ParallaxContainer } from './ParallaxContainer';
+export { AnimatedContainer } from './AnimatedContainer';
+
 export { FadeInContainer } from './FadeInContainer';
 export { FadeInSectionHeader } from './FadeInSectionHeader';
 

@@ -2,11 +2,12 @@ import { Suspense } from 'react';
 import {
     FadeInContainer,
     FadeInSectionHeader,
-    FixedParallaxContainer,
+    ParallaxContainer,
     Footer,
     Loader,
     PageHeader,
     PokemonsContainer,
+    AnimatedContainer,
 } from '@/app/components';
 
 export default function Home() {
@@ -15,7 +16,12 @@ export default function Home() {
             <PageHeader header="PokeLand" subheader="Catch 'em all!" />
             <main className="container mx-auto px-4 flex-grow">
                 <section aria-labelledby="pokemon-section-parallax">
-                    <FixedParallaxContainer label="such wow much cool!" id="pokemon-section-parallax" />
+                    <div className="hidden lg:block">
+                        <ParallaxContainer label="such wow much cool!" id="pokemon-section-parallax" />
+                    </div>
+                    <div className="block lg:hidden">
+                        <AnimatedContainer label="such wow much cool" id="pokemon-section-parallax" />
+                    </div>
                 </section>
                 <section aria-labelledby="pokemon-section-title" className="my-24 md:my-64">
                     <FadeInSectionHeader

@@ -1,9 +1,9 @@
-interface FixedParallaxContainerProps {
+interface ParallaxContainerProps {
     id?: string;
     label?: string;
 }
 
-export const FixedParallaxContainer: React.FC<FixedParallaxContainerProps> = ({ label, id }) => (
+export const ParallaxContainer: React.FC<ParallaxContainerProps> = ({ label, id }) => (
     <div
         id={id}
         className="relative bg-[url('/parallax.webp')] bg-left-top md:bg-center lg:bg-cover xl:bg-right-top bg-no-repeat bg-fixed h-48 md:h-96 lg:h-[32rem] w-full"
